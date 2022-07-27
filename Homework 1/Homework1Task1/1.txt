@@ -1,2 +1,3 @@
 initial text
 Text added in idea, then committed and pushed to GitHub
+Text added in GutHub, the pulled to idea
