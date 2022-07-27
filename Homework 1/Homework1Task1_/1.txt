@@ -1,1 +1,2 @@
 original line
+second line in branch_with_conflicts
