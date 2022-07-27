@@ -1,1 +1,2 @@
 initial text
+Text added in idea, then committed and pushed to GitHub
