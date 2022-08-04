@@ -1,4 +1,17 @@
 .header {
-    font-size: 16px;
+    font-size: 32px;
     font-weight:bold;
+    text-align:center;
+    }
+
+* {
+    background-color:white;
+}
+
+.checkboxes {
+    font-style:italic;
+    font-weight:bold;
+}
+.lists {
+    color:red;
 }
