@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<form>
+<form action="placeholder">
     <label>Краткое описание того, что делает форма.</label>
     <br>
     <br>
@@ -19,32 +19,32 @@
     <label>
         Текстовое поле (однострочное), добавленное с применением вложенности:
         <br>
-        <input type="text" name="sampleName">
+        <input type="text" name="text1">
     </label>
     <br>
     <label for="textId1">
         Текстовое поле (однострочное), добавленное с применением "for":
         <br>
-        <input type="text" id="textId1" name="sampleName">
+        <input type="text" id="textId1" name="text2">
     </label>
     <br>
     <label>
         Многострочное текстовое поле, добавленное с применением вложенности:
         <br>
-        <textarea>Можете ввести многострочный текст...</textarea>
+        <textarea name="textarea1">Можете ввести многострочный текст...</textarea>
     </label>
     <br>
     <label>
         Пример чекбокса (каждый в своем label):
-        <input type="checkbox">
+        <input type="checkbox" name="checkbox1">
         Чекбокс 1
     </label>
     <label>
-        <input type="checkbox">
+        <input type="checkbox" name="checkbox2">
         Чекбокс 2
     </label>
     <label>
-        <input type="checkbox">
+        <input type="checkbox" name="checkbox3">
         Чекбокс 3
     </label>
     <br>
@@ -64,7 +64,7 @@
     <br>
     <label>
         Пример списка с единичным выбором, по умполчанию показано 3 строки
-        <select size="3">
+        <select size="3" name="list1">
             <option>Выбор1</option>
             <option>Выбор2</option>
             <option>Выбор3</option>
@@ -74,7 +74,7 @@
     <br>
     <label>
         Пример списка с множественным выбором, по умполчанию показано 4 строки
-        <select multiple="multiple" size="4">
+        <select multiple="multiple" size="4" name="list_multiple1">
             <option>Выбор1</option>
             <option>Выбор2</option>
             <option>Выбор3</option>
