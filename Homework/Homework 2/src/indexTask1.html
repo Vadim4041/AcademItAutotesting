@@ -13,7 +13,9 @@
 
 <body>
 <form action="URL_placeholder">
-    <label>Краткое описание того, что делает форма.</label>
+    <label class="header">
+        Заголовок формы
+    </label>
     <br>
     <br>
 
@@ -32,22 +34,21 @@
     <label>
         Многострочное текстовое поле, добавленное с применением вложенности:
         <br>
-        <textarea id="textarea1id" name="textarea1">
-            Можете ввести многострочный текст...
-        </textarea>
+        <textarea id="textarea1id" maxlength="100" rows="3" cols="50" placeholder="Можете ввести многострочный текст..." name="textarea1"></textarea>
     </label>
     <br>
-    <label>
+    <label class="checkboxes">
         Пример чекбокса (каждый в своем label):
-        <input type="checkbox" name="checkbox1">
+        <input  id="checkbox1" type="checkbox" name="checkbox1">
         Чекбокс 1
     </label>
-    <label>
-        <input type="checkbox" name="checkbox2">
+
+    <label class="checkboxes">
+        <input type="checkbox" class="checkboxes" id="checkbox2" name="checkbox2">
         Чекбокс 2
     </label>
-    <label>
-        <input type="checkbox" name="checkbox3">
+    <label class="checkboxes">
+        <input type="checkbox" class="checkboxes" id="checkbox3" name="checkbox3">
         Чекбокс 3
     </label>
     <br>
@@ -65,7 +66,7 @@
         Радио-кнопка 3
     </label>
     <br>
-    <label>
+    <label class="lists">
         Пример списка с единичным выбором, по умполчанию показано 3 строки
         <select size="3" name="list1">
             <option>Выбор1</option>
