@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<title>Mantis Tests</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">Positive login test</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://academ-it.ru/mantisbt/my_view_page.php<datalist><option>https://academ-it.ru/mantisbt/my_view_page.php</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=username<datalist><option>id=username</option><option>name=username</option><option>xpath=//input[@id='username']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#username</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=username<datalist><option>id=username</option><option>name=username</option><option>xpath=//input[@id='username']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#username</option></datalist></td><td>admin</td></tr>
+<tr><td>click</td><td>xpath=//input[@value='Войти']<datalist><option>xpath=//input[@value='Войти']</option><option>xpath=//form[@id='login-form']/fieldset/input[2]</option><option>xpath=//input[2]</option><option>css=input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>xpath=//input[@id='password']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#password</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>xpath=//input[@id='password']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#password</option></datalist></td><td>admin20</td></tr>
+<tr><td>click</td><td>xpath=//input[@value='Войти']<datalist><option>xpath=//input[@value='Войти']</option><option>xpath=//form[@id='login-form']/fieldset/input[3]</option><option>xpath=//input[3]</option><option>css=input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//li[2]/a/span<datalist><option>xpath=//div[@id='navbar-container']/div[2]/ul/li[2]/a/span</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Invite Users'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Report Issue'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My Account'])[1]/preceding::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='RSS'])[1]/preceding::span[1]</option><option>xpath=//*/text()[normalize-space(.)='admin']/parent::*</option><option>xpath=//li[2]/a/span</option><option>css=span.user-info</option></datalist></td><td></td></tr>
+<tr><td>assertText</td><td>css=.user-info<datalist><option>css=.user-info</option></datalist></td><td>admin</td></tr>
+<tr><td>click</td><td>css=.user-info<datalist><option>css=.user-info</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logout<datalist><option>link=Logout</option><option>xpath=//a[contains(text(),'Logout')]</option><option>xpath=//div[@id='navbar-container']/div[2]/ul/li[2]/ul/li[4]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='RSS'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My Account'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My View'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='View Issues'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Logout']/parent::*</option><option>xpath=//a[contains(@href, '/mantisbt/logout_page.php')]</option><option>xpath=//li[4]/a</option></datalist></td><td></td></tr>
+<tr><td>assertLocation</td><td>https://academ-it.ru/mantisbt/login_page.php<datalist><option>https://academ-it.ru/mantisbt/login_page.php</option></datalist></td><td></td></tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3" data-tags="">Positive login test copy</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>https://academ-it.ru/mantisbt/my_view_page.php<datalist><option>https://academ-it.ru/mantisbt/my_view_page.php</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=username<datalist><option>id=username</option><option>name=username</option><option>xpath=//input[@id='username']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#username</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=username<datalist><option>id=username</option><option>name=username</option><option>xpath=//input[@id='username']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#username</option></datalist></td><td>admin</td></tr>
+<tr><td>click</td><td>xpath=//input[@value='Войти']<datalist><option>xpath=//input[@value='Войти']</option><option>xpath=//form[@id='login-form']/fieldset/input[2]</option><option>xpath=//input[2]</option><option>css=input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>xpath=//input[@id='password']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#password</option></datalist></td><td></td></tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>name=password</option><option>xpath=//input[@id='password']</option><option>xpath=//form[@id='login-form']/fieldset/label/span/input</option><option>xpath=//span/input</option><option>css=#password</option></datalist></td><td>admin20</td></tr>
+<tr><td>click</td><td>xpath=//input[@value='Войти']<datalist><option>xpath=//input[@value='Войти']</option><option>xpath=//form[@id='login-form']/fieldset/input[3]</option><option>xpath=//input[3]</option><option>css=input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>xpath=//li[2]/a/span<datalist><option>xpath=//div[@id='navbar-container']/div[2]/ul/li[2]/a/span</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Invite Users'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='Report Issue'])[1]/following::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My Account'])[1]/preceding::span[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='RSS'])[1]/preceding::span[1]</option><option>xpath=//*/text()[normalize-space(.)='admin']/parent::*</option><option>xpath=//li[2]/a/span</option><option>css=span.user-info</option></datalist></td><td></td></tr>
+<tr><td>assertText</td><td>css=.user-info<datalist><option>css=.user-info</option></datalist></td><td>admin</td></tr>
+<tr><td>click</td><td>css=.user-info<datalist><option>css=.user-info</option></datalist></td><td></td></tr>
+<tr><td>click</td><td>link=Logout<datalist><option>link=Logout</option><option>xpath=//a[contains(text(),'Logout')]</option><option>xpath=//div[@id='navbar-container']/div[2]/ul/li[2]/ul/li[4]/a</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='RSS'])[1]/following::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My Account'])[1]/following::a[2]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='My View'])[1]/preceding::a[1]</option><option>xpath=(.//*[normalize-space(text()) and normalize-space(.)='View Issues'])[1]/preceding::a[2]</option><option>xpath=//*/text()[normalize-space(.)='Logout']/parent::*</option><option>xpath=//a[contains(@href, '/mantisbt/logout_page.php')]</option><option>xpath=//li[4]/a</option></datalist></td><td></td></tr>
+<tr><td>assertLocation</td><td>https://academ-it.ru/mantisbt/login_page.php<datalist><option>https://academ-it.ru/mantisbt/login_page.php</option></datalist></td><td></td></tr>
+</tbody></table>
+</body>
+</html>
