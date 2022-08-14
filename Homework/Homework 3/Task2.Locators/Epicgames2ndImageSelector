@@ -1,0 +1,5 @@
+Написать локатор для второй картинки в неупорядоченном
+списке на странице
+https://www.epicgames.com/store/ru/news
+Локатор:
+ul > li:nth-child(2) img
