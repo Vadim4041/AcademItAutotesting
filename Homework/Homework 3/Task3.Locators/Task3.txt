@@ -1,0 +1,5 @@
+ Написать селектор
+для кнопки на странице
+https://www.epicgames.com/id/register/epic
+Локатор:
+button:nth-child(2) > span > svg
