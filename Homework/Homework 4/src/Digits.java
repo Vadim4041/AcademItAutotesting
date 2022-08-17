@@ -1,11 +1,13 @@
 import java.util.Scanner;
 
+import static java.lang.Math.abs;
+
 public class Digits {
     public static void main(String[] args) {
         System.out.println("Введите число:");
         Scanner scanner = new Scanner(System.in);
 
-        int a = scanner.nextInt();
+        int a = abs(scanner.nextInt());
 
         int sumDigits = 0;
         int sumOddDigits = 0;
