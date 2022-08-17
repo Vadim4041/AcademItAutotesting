@@ -1,5 +1,7 @@
 package OOP;
 
+import java.time.LocalDate;
+
 public class Person {
     private String name;
     private String middleName;
@@ -52,7 +54,9 @@ public class Person {
     }
 
     public int getBirthYear() {
-        return 2022 - age;
+        LocalDate dt = LocalDate.now();
+        int year = dt.getYear();
+        return year - age;
 
     }
 
