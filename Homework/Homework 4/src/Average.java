@@ -15,7 +15,7 @@ public class Average {
         int amountOfEvenNumbers = 0;
 
         for (int i = start; i <= end; i++) {
-            sum +=  i;
+            sum += i;
             if (i % 2 == 0) {
                 sumEven += i;
                 amountOfEvenNumbers += 1;
