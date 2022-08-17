@@ -25,7 +25,7 @@ public class PersonMain {
         person.setName("name_placeholder");
         person.setFamilyName("familyName_placeholder");
         person.setMiddleName("middleName_placeholder");
-        person.setAge(99);
+        person.setAge(-5);
 
         System.out.println("Ниже будет использован сеттер для изменения того, что было введено: " + person);
         System.out.println("Год рождения: " + person.getBirthYear());
