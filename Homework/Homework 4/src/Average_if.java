@@ -1,9 +1,15 @@
+import java.util.Scanner;
+
 public class Average_if {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        int start = 3;
-        int end = 11;
+        System.out.println("Введите первое число:");
+        int start = scanner.nextInt();
+
+        System.out.println("Введите второе число:");
+        int end = scanner.nextInt();
 
         int difference = end - start;
         int sum = 0;
@@ -32,5 +38,5 @@ public class Average_if {
         System.out.println();
         System.out.printf("Среднее арифметическое всех четных чисел диапазона от %d до %d включительно равняется %.3f.", start, end, averageEven);
     }
-
+//        TODO Неправильно работает, если первое число больше второго
 }
