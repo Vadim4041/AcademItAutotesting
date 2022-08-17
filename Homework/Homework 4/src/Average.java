@@ -1,15 +1,18 @@
+import java.util.Scanner;
+
 public class Average {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        int start = 3;
-        int end = 11;
+        int start = scanner.nextInt();
+        int end = scanner.nextInt();
 
         int difference = end - start;
         int sum = 0;
         int sumEven = 0;
         int amountOfEvenNumbers = 0;
 
-        for (int i = 0; i <= difference; i++) {
+        for (int i = start; i <= end; i++) {
             sum += (start + i);
             if ((start + i) % 2 == 0) {
                 sumEven += (start + i);
