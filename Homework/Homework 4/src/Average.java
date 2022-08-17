@@ -10,9 +10,16 @@ public class Average {
         System.out.println("Введите второе число:");
         int end = scanner.nextInt();
 
+        if (start > end) {
+            int temp = start;
+            start = end;
+            end = temp;
+        }
+
         int sum = 0;
         int sumEven = 0;
         int amountOfEvenNumbers = 0;
+
 
         for (int i = start; i <= end; i++) {
             sum += i;
