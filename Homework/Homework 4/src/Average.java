@@ -20,7 +20,6 @@ public class Average {
         int sumEven = 0;
         int amountOfEvenNumbers = 0;
 
-
         for (int i = start; i <= end; i++) {
             sum += i;
             if (i % 2 == 0) {
