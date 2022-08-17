@@ -14,17 +14,13 @@ public class Average_if {
         if (start % 2 == 0) {
             if (end % 2 == 0) {
                 amountOfEvenNumbers = difference / 2 + 1;
-            } else {
-                amountOfEvenNumbers = (difference + 1) / 2;
-            }
+            } else amountOfEvenNumbers = (difference + 1) / 2;
             sumEven = (2 * start + 2 * (amountOfEvenNumbers - 1)) * amountOfEvenNumbers / 2;
 
         } else {
             if (end % 2 == 0) {
                 amountOfEvenNumbers = (difference + 1) / 2;
-            } else {
-                amountOfEvenNumbers = difference / 2;
-            }
+            } else amountOfEvenNumbers = difference / 2;
             sumEven = (2 * (start + 1) + 2 * (amountOfEvenNumbers - 1)) * amountOfEvenNumbers / 2;
         }
 
