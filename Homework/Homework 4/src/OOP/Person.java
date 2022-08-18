@@ -13,7 +13,7 @@
 //        • В классе Main создать объект класса Person, установить ему
 //        значение поля age и вывести на экран год рождения
 //        человека
-        package OOP;
+package OOP;
 
 import java.time.LocalDate;
 
@@ -67,7 +67,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "{" + familyName + " " + name + " " + middleName + " " + age + "}";
+        return String.format("Пользователь: {фамилия: %s, имя: %s, отчество: %s, возраст: %d}", familyName, name, middleName, age);
     }
 
     public int getBirthYear() {
