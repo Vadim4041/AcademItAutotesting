@@ -15,10 +15,13 @@ public class Average {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите первое число:");
-        int start = scanner.nextInt();
+        int start1 = scanner.nextInt();
 
         System.out.println("Введите второе число:");
-        int end = scanner.nextInt();
+        int end1 = scanner.nextInt();
+
+        int start = start1;
+        int end = end1;
 
         if (start > end) {
             int temp = start;
@@ -41,8 +44,8 @@ public class Average {
         double average = (double) sum / ((end - start) + 1);
         double averageEven = (double) sumEven / amountOfEvenNumbers;
 
-        System.out.printf("Среднее арифметическое всех чисел диапазона от %d до %d включительно равняется %.3f.", start, end, average);
+        System.out.printf("Среднее арифметическое всех чисел диапазона от %d до %d включительно равняется %.3f.", start1, end1, average);
         System.out.println();
-        System.out.printf("Среднее арифметическое всех четных чисел диапазона от %d до %d включительно равняется %.3f.", start, end, averageEven);
+        System.out.printf("Среднее арифметическое всех четных чисел диапазона от %d до %d включительно равняется %.3f.", start1, end1, averageEven);
     }
 }
