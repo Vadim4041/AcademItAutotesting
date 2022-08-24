@@ -15,12 +15,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.By.cssSelector;
 
 public class Practicum2 {
     private WebDriver driver;
+
     @BeforeEach
     public void setUp() {
         driver = null;
@@ -43,7 +45,8 @@ public class Practicum2 {
         }
         driver.get("https://the-internet.herokuapp.com/");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        ;
     }
 
     @AfterEach
@@ -59,8 +62,10 @@ public class Practicum2 {
     public void simpleTest() throws InterruptedException {
         SoftAssertions softAssert = new SoftAssertions();
 
-        WebDriverWait wait = new WebDriverWait(driver, 30, 500);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li:nth-child(11) > a")));
+//        WebDriverWait wait = new WebDriverWait(driver, 30, 500);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li:nth-child(11) > a"))); // deprecated
+//        https://stackoverflow.com/questions/58993667/webdriverwait-is-deprecated-in-selenium-4
+
         WebElement dropdownLink = driver.findElement(By.cssSelector("li:nth-child(11) > a"));
 
         dropdownLink.click();
