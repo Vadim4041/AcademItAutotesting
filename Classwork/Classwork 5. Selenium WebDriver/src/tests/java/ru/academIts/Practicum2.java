@@ -14,7 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import javax.xml.stream.Location;
 import java.time.Duration;
-
+// в настройках class naming convention показывает, либо убирает предупреждения об именах объектов
 public class Practicum2 {
     private WebDriver driver;
 
@@ -60,21 +60,23 @@ public class Practicum2 {
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li:nth-child(11) > a"))); // deprecated
 //        https://stackoverflow.com/questions/58993667/webdriverwait-is-deprecated-in-selenium-4
 
+        softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://the-internet.herokuapp.com/");
         WebElement dropdownLink = driver.findElement(By.cssSelector("li:nth-child(11) > a"));
 
         dropdownLink.click();
-        Thread.sleep(1500); // - неудобно, лучше не использовать
+//        Thread.sleep(1500); // - неудобно, лучше не использовать
 
         WebElement dropdownList = driver.findElement(By.id("dropdown"));
         dropdownList.click();
-        softAssert.assertThat(driver.getCurrentUrl().equals("123"));
-//        softAssert.equals()
-        Thread.sleep(1500);
+        softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://the-internet.herokuapp.com/dropdown");
+
+//        Thread.sleep(1500);
 
         WebElement option2 = driver.findElement(By.cssSelector("option:nth-child(3)"));
         option2.click();
-        softAssert.assertThat(driver.findElement(By.id("dropdown")).getText()).isEqualTo("Option 2"); // - как вариант, но длинно сильно
-        softAssert.assertThat(driver.findElement(By.cssSelector("option[selected]")).getText()).isEqualTo("selected"); // - как вариант, можно любой из них по идее
-        Thread.sleep(1500);
+//        softAssert.assertThat(driver.findElement(By.id("dropdown")).getText()).isEqualTo("Option 2"); // - пока не работает правильно
+        softAssert.assertThat(driver.findElement(By.cssSelector("option[selected]")).getText()).isEqualTo("Option 2"); // - как вариант, можно любой из них по идее
+//        Thread.sleep(1500);
+        softAssert.assertAll();
     }
 }
