@@ -17,6 +17,8 @@ public class webDriver {
     }
 
 //    не работает у меня почему-то, у преподавателя все нормально запускается
+    // По поводу моей проблемы с открытием в edge, причина в том, что у меня был "slf4j" старой версии, добавил в dependencies новую, и все заработало
+    // https://stackoverflow.com/questions/7421612/slf4j-failed-to-load-class-org-slf4j-impl-staticloggerbinder
 //    @Test
 //    public void simpleTest() {
 //
