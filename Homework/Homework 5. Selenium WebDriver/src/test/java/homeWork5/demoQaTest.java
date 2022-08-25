@@ -116,7 +116,7 @@ public class demoQaTest {
         js.executeScript("arguments[0].click()", hobbiesCheckbox);
 
         String pictureName = "picture.jpg";
-        String picturePath = "D:\\YandexDisk\\0_PROGRAMMING\\ACADEM IT\\AcademItAutotesting\\Homework\\Homework 5. Selenium WebDriver\\resources\\picture.jpg";
+        String picturePath = "D:\\YandexDisk\\0_PROGRAMMING\\ACADEM IT\\AcademItAutotesting\\Homework\\Homework 5. Selenium WebDriver\\src\\test\\recources\\picture.jpg";
         WebElement uploadPicture = driver.findElement(By.id("uploadPicture"));
         uploadPicture.sendKeys(picturePath);
 
