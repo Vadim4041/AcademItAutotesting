@@ -23,6 +23,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -115,9 +116,9 @@ public class demoQaTest {
         js.executeScript("arguments[0].click()", hobbiesCheckbox);
 
         String pictureName = "picture.jpg";
-        String picturePath = "D:\\YandexDisk\\0_PROGRAMMING\\ACADEM IT\\AcademItAutotesting\\Homework\\Homework 5. Selenium WebDriver\\src\\test\\recources\\picture.jpg";
+        File picture = new File("Homework/Homework 5. Selenium WebDriver/src/test/resources/" + pictureName);
         WebElement uploadPicture = driver.findElement(By.id("uploadPicture"));
-        uploadPicture.sendKeys(picturePath);
+        uploadPicture.sendKeys(picture.getAbsolutePath());
 
         String currentAddressInput = "currentAddress";
         WebElement currentAddress = driver.findElement(By.id("currentAddress"));
