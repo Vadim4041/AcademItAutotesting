@@ -60,7 +60,7 @@ public class demoQaTest {
     }
 
     @Test
-    public void formTest() throws InterruptedException {
+    public void formTest() {
         SoftAssertions softAssert = new SoftAssertions();
 
         String firstNameInput = "firstNameInput";
@@ -75,44 +75,49 @@ public class demoQaTest {
         WebElement userEmail = driver.findElement(By.id("userEmail"));
         userEmail.sendKeys(userEmailInput);
 
-        WebElement genderRadio = driver.findElement(By.id("gender-radio-3"));
-        System.out.println(genderRadio.getAttribute("value"));
+        String genderRadioInput = "3";
+        WebElement genderRadio = driver.findElement(By.id("gender-radio-" + genderRadioInput));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", genderRadio);
 
-
+        String userNumberInput = "1111111111";
         WebElement userNumber = driver.findElement(By.id("userNumber"));
-        userNumber.sendKeys("1111111111");
+        userNumber.sendKeys(userNumberInput);
 
-        WebElement dateOfBirthInput = driver.findElement(By.id("dateOfBirthInput"));
-        dateOfBirthInput.sendKeys(Keys.CONTROL + "a");
-        dateOfBirthInput.sendKeys("11 Sep 1996");
-        dateOfBirthInput.sendKeys(Keys.ENTER);
+        String dateOfBirthInput = "11 Sep 1996";
+        WebElement dateOfBirth = driver.findElement(By.id("dateOfBirthInput"));
+        dateOfBirth.sendKeys(Keys.CONTROL + "a");
+        dateOfBirth.sendKeys(dateOfBirthInput);
+        dateOfBirth.sendKeys(Keys.ENTER);
 
-
+        String subjectsInput = "Maths";
         WebElement subjects = driver.findElement(By.id("subjectsInput"));
         subjects.click();
-        subjects.sendKeys("Maths");
+        subjects.sendKeys(subjectsInput);
         subjects.sendKeys(Keys.ENTER);
 
-        WebElement hobbiesCheckbox = driver.findElement(By.id("hobbies-checkbox-2"));
+        String hobbiesCheckboxInput = "2";
+        WebElement hobby = driver.findElement(By.cssSelector("#hobbiesWrapper > div.col-md-9.col-sm-12 > div:nth-child(2) > label"));
+        WebElement hobbiesCheckbox = driver.findElement(By.id("hobbies-checkbox-" + hobbiesCheckboxInput));
         js.executeScript("arguments[0].click()", hobbiesCheckbox);
 
-//    TODO сделать решение с загрузкой картинки
-//     WebElement uploadPicture = driver.findElement(By.id("uploadPicture"));
-//        js.executeScript("arguments[0].click()", uploadPicture);
-//        uploadPicture.sendKeys(Keys.ESCAPE);
+        String pictureName = "picture.jpg";
+        String picturePath = "D:\\YandexDisk\\0_PROGRAMMING\\ACADEM IT\\AcademItAutotesting\\Homework\\Homework 5. Selenium WebDriver\\resources\\picture.jpg";
+        WebElement uploadPicture = driver.findElement(By.id("uploadPicture"));
+        uploadPicture.sendKeys(picturePath);
 
+        String currentAddressInput = "currentAddress";
         WebElement currentAddress = driver.findElement(By.id("currentAddress"));
-        currentAddress.sendKeys("currentAddress");
+        currentAddress.sendKeys(currentAddressInput);
 
+        String stateSelectInput = "NCR";
         WebElement stateSelect = driver.findElement(By.id("react-select-3-input"));
-        stateSelect.sendKeys("NCR");
+        stateSelect.sendKeys(stateSelectInput);
         stateSelect.sendKeys(Keys.ENTER);
 
+        String citySelectInput = "Delhi";
         WebElement citySelect = driver.findElement(By.id("react-select-4-input"));
-
-        citySelect.sendKeys("Delhi");
+        citySelect.sendKeys(citySelectInput);
         citySelect.sendKeys(Keys.RETURN);
 //        citySelect.sendKeys(Keys.RETURN); // вариант окончания
 
@@ -129,9 +134,13 @@ public class demoQaTest {
         softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(2)")).getText()).isEqualTo(firstNameInput + " " + lastNameInput);
         softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(2) > td:nth-child(2)")).getText()).isEqualTo(userEmailInput);
         softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(3) > td:nth-child(2)")).getText()).isEqualTo(genderRadio.getAttribute("value"));
-        // Возможно, получится не задавать переменные для текста, а взять их с тех, что были записаны? скорее всего нет
-//        Thread.sleep(5000);
-
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(4) > td:nth-child(2)")).getText()).isEqualTo(userNumberInput);
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(5) > td:nth-child(2)")).getText()).isEqualTo("11 September,1996");
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(6) > td:nth-child(2)")).getText()).isEqualTo(subjectsInput);
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(7) > td:nth-child(2)")).getText()).isEqualTo(hobby.getText());
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(8) > td:nth-child(2)")).getText()).isEqualTo(pictureName);
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(9) > td:nth-child(2)")).getText()).isEqualTo(currentAddressInput);
+        softAssert.assertThat(driver.findElement(By.cssSelector("tr:nth-child(10) > td:nth-child(2)")).getText()).isEqualTo(stateSelectInput + " " + citySelectInput);
 
         softAssert.assertAll();
     }
