@@ -111,7 +111,7 @@ public class demoQaTest {
         subjects.sendKeys(Keys.ENTER);
 
         String hobbiesCheckboxInput = "2";
-        WebElement hobby = driver.findElement(By.cssSelector("#hobbiesWrapper > div.col-md-9.col-sm-12 > div:nth-child(2) > label"));
+        WebElement hobby = driver.findElement(By.cssSelector("#hobbiesWrapper > div.col-md-9.col-sm-12 > div:nth-child(" + hobbiesCheckboxInput + ") > label"));
         WebElement hobbiesCheckbox = driver.findElement(By.id("hobbies-checkbox-" + hobbiesCheckboxInput));
         js.executeScript("arguments[0].click()", hobbiesCheckbox);
 
