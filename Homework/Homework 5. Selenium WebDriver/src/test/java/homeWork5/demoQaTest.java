@@ -36,7 +36,6 @@ public class demoQaTest {
 
     @BeforeEach
     public void setUp() {
-        driver = null;
         String browser = System.getProperty("browser");
 
         switch (browser) {
