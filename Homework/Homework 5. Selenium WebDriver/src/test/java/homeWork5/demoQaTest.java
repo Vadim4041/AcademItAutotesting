@@ -12,8 +12,10 @@ package homeWork5;
 //        • При необходимости использовать wait
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -35,6 +37,9 @@ public class demoQaTest {
 
     private WebDriver driver;
 
+    private final SoftAssertions softAssert = new SoftAssertions();
+
+
     @BeforeEach
     public void setUp() {
         String browser = System.getProperty("browser");
@@ -55,7 +60,7 @@ public class demoQaTest {
         }
         driver.get("https://demoqa.com/automation-practice-form");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
     }
 
@@ -68,8 +73,8 @@ public class demoQaTest {
     }
 
     @Test
-    public void formTest() {
-        SoftAssertions softAssert = new SoftAssertions();
+    public void formTestPositive() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         String firstNameInput = "firstNameInput";
@@ -86,7 +91,6 @@ public class demoQaTest {
 
         String genderRadioInput = "3";
         WebElement genderRadio = driver.findElement(By.id("gender-radio-" + genderRadioInput));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click()", genderRadio);
 
         String userNumberInput = "1111111111";
@@ -155,4 +159,148 @@ public class demoQaTest {
         softAssert.assertAll();
     }
 
+    @Test
+    public void formTestNotFilledRequiredFields() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Проверяем, если вообще ничего не заполнять:
+        WebElement submit = driver.findElement(By.id("submit"));
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        // Проверяем, если заполнить все поля, кроме обязательных:
+        String userEmailInput = "userEmailInput@mail.com";
+        WebElement userEmail = driver.findElement(By.id("userEmail"));
+        userEmail.sendKeys(userEmailInput);
+
+        Calendar calendar = new GregorianCalendar(1996, Calendar.SEPTEMBER, 11);
+        DateFormat df = new SimpleDateFormat("dd MMMM,yyy", Locale.ENGLISH);
+        DateFormat dfInput = new SimpleDateFormat("dd MMM yyy", Locale.ENGLISH);
+        String dateInput = dfInput.format(calendar.getTime());
+        String date = df.format(calendar.getTime());
+        WebElement dateOfBirth = driver.findElement(By.id("dateOfBirthInput"));
+        dateOfBirth.sendKeys(Keys.CONTROL + "a");
+        dateOfBirth.sendKeys(dateInput);
+        dateOfBirth.sendKeys(Keys.ENTER);
+
+        String subjectsInput = "Maths";
+        WebElement subjects = driver.findElement(By.id("subjectsInput"));
+        subjects.click();
+        subjects.sendKeys(subjectsInput);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("subjectsInput"))); // firefox слишком быстрый, поэтому добавил задержку, на других браузерах ошибки не было и без задержки
+        subjects.sendKeys(Keys.ENTER);
+
+        String hobbiesCheckboxInput = "2";
+        WebElement hobby = driver.findElement(By.cssSelector("#hobbiesWrapper > div.col-md-9.col-sm-12 > div:nth-child(" + hobbiesCheckboxInput + ") > label"));
+        WebElement hobbiesCheckbox = driver.findElement(By.id("hobbies-checkbox-" + hobbiesCheckboxInput));
+        js.executeScript("arguments[0].click()", hobbiesCheckbox);
+
+        String pictureName = "picture.jpg";
+        File picture = new File("Homework/Homework 5. Selenium WebDriver/src/test/resources/" + pictureName);
+        WebElement uploadPicture = driver.findElement(By.id("uploadPicture"));
+        uploadPicture.sendKeys(picture.getAbsolutePath());
+
+        String currentAddressInput = "currentAddress";
+        WebElement currentAddress = driver.findElement(By.id("currentAddress"));
+        currentAddress.sendKeys(currentAddressInput);
+
+        String stateSelectInput = "NCR";
+        WebElement stateSelect = driver.findElement(By.id("react-select-3-input"));
+        stateSelect.sendKeys(stateSelectInput);
+        stateSelect.sendKeys(Keys.ENTER);
+
+        String citySelectInput = "Delhi";
+        WebElement citySelect = driver.findElement(By.id("react-select-4-input"));
+
+        citySelect.sendKeys(citySelectInput);
+        citySelect.sendKeys(Keys.RETURN);
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        // Проверяем, если не заполнить только одно обязательное поле:
+        String firstNameInput = "firstNameInput";
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        firstName.sendKeys(firstNameInput);
+
+        String lastNameInput = "lastNameInput";
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        lastName.sendKeys(lastNameInput);
+
+        String userNumberInput = "1111111111";
+        WebElement userNumber = driver.findElement(By.id("userNumber"));
+        userNumber.sendKeys(userNumberInput);
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        String genderRadioInput = "3";
+        WebElement genderRadio = driver.findElement(By.id("gender-radio-" + genderRadioInput));
+        js.executeScript("arguments[0].click()", genderRadio);
+
+        firstName.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        firstName.sendKeys(firstNameInput);
+        lastName.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        lastName.sendKeys(lastNameInput);
+        userNumber.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        softAssert.assertAll();
+
+    }
+
+    @Test
+    public void wrongMaskInput() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement submit = driver.findElement(By.id("submit"));
+
+        // Заполняем только обязательные поля:
+        String firstNameInput = "firstNameInput";
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        firstName.sendKeys(firstNameInput);
+
+        String lastNameInput = "lastNameInput";
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        lastName.sendKeys(lastNameInput);
+
+        String genderRadioInput = "3";
+        WebElement genderRadio = driver.findElement(By.id("gender-radio-" + genderRadioInput));
+        js.executeScript("arguments[0].click()", genderRadio);
+
+        String userNumberInput = "1111111111";
+        WebElement userNumber = driver.findElement(By.id("userNumber"));
+        userNumber.sendKeys(userNumberInput);
+
+        // Заполняем email не по маске:
+        String userEmailInput = "randomText";
+        WebElement userEmail = driver.findElement(By.id("userEmail"));
+        userEmail.sendKeys(userEmailInput);
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        // Заполняем номер телефона не по маске:
+        userEmailInput = "userEmailInput@mail.com";
+        userEmail.sendKeys(Keys.CONTROL + "a");
+        userEmail.sendKeys(userEmailInput);
+        userNumber.sendKeys(Keys.CONTROL + "a");
+        userNumber.sendKeys("randomText");
+
+        js.executeScript("arguments[0].click()", submit);
+        softAssert.assertThat(driver.findElements(By.id("example-modal-sizes-title-lg")).size()).isEqualTo(0);
+
+        softAssert.assertAll();
+    }
 }
