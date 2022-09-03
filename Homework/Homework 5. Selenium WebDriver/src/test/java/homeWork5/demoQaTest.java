@@ -60,7 +60,7 @@ public class demoQaTest {
         }
         driver.get("https://demoqa.com/automation-practice-form");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
     }
 
@@ -75,7 +75,7 @@ public class demoQaTest {
     @Test
     public void formTestPositive() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
 
         String firstNameInput = "firstNameInput";
         WebElement firstName = driver.findElement(By.id("firstName"));
@@ -164,7 +164,7 @@ public class demoQaTest {
 
     @Test
     public void formTestNotFilledRequiredFields() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         // Проверяем, если вообще ничего не заполнять:
@@ -265,7 +265,7 @@ public class demoQaTest {
 
     @Test
     public void wrongMaskInput() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement submit = driver.findElement(By.id("submit"));
 

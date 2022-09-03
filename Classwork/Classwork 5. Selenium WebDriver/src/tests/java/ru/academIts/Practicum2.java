@@ -40,7 +40,7 @@ public class Practicum2 {
         }
         driver.get("https://the-internet.herokuapp.com/");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(10);
     }
 
     @AfterEach
