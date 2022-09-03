@@ -38,11 +38,38 @@ public class CreateDeleteIssueTests extends BaseTest {
     }
 
     @Test
-    public void addIssueWithoutRequiredFields() {
+    public void addIssueWithoutRequiredFields() throws InterruptedException {
+        mantisSite = new MantisSite(driver);
+        mantisSite.login();
+        mantisSite.getMainPage().goToReportIssuePage();
+        mantisSite.reportEmptyIssue();
+
+        softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://academ-it.ru/mantisbt/bug_report_page.php");
+
+        mantisSite.reportIssueWithoutDescription();
+
+        softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://academ-it.ru/mantisbt/bug_report_page.php");
+
+        mantisSite.reportIssueWithoutSummary();
+
+        softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://academ-it.ru/mantisbt/bug_report_page.php");
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void deleteIssueWithoutConfirmation() {
         mantisSite = new MantisSite(driver);
         mantisSite.login();
         mantisSite.getMainPage().goToViewIssuesPage();
-        mantisSite.reportEmptyIssue();
-//        softAssert.assertThat(mantisSite.getReportIssuePage());
+        String issueIdBeforeDeletion = mantisSite.getViewIssuesPage().getNewestIssueId();
+        mantisSite.getViewIssuesPage().newestIssueDetails();
+        mantisSite.getNewestIssuePage().deleteIssueWithoutConfirmation();
+        mantisSite.getMainPage().goToViewIssuesPage();
+        String issueIdAfterDeletion = mantisSite.getViewIssuesPage().getNewestIssueId();
+
+        softAssert.assertThat(issueIdBeforeDeletion).isEqualTo(issueIdAfterDeletion);
+
+        softAssert.assertAll();
     }
+
 }

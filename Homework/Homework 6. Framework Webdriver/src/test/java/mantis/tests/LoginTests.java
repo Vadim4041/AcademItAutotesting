@@ -29,11 +29,4 @@ public class LoginTests extends BaseTest{
         Assertions.assertEquals("admin", currentUserName);
         Thread.sleep(1000);
     }
-
-
-
-
-    //TODO Идеи для негативного тестирования - нажимаем кнопку отправить, не заполнив обязательные поля.
-    // При удалении нажимаем на кноку удалить, потом сабмит не нажимаем, возвращаемся в список с багами
-
 }

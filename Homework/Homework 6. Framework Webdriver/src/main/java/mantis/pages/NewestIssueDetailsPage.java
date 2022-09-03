@@ -49,4 +49,8 @@ public class NewestIssueDetailsPage {
 //        Thread.sleep(1000);
         confirmDeleteIssueButton.click();
     }
+
+    public void deleteIssueWithoutConfirmation() {
+        deleteIssueButton.click();
+    }
 }

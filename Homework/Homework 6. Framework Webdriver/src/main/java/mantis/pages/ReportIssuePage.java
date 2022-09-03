@@ -35,6 +35,15 @@ public class ReportIssuePage {
     public void inputDescription() {
         descriptionField.sendKeys(descriptionText);
     }
+
+    public void clearInputDescription() {
+        descriptionField.clear();
+    }
+
+    public void clearInputSummary() {
+        summaryField.clear();
+    }
+
     public void submitIssue() {
         submitIssueButton.click();
     }

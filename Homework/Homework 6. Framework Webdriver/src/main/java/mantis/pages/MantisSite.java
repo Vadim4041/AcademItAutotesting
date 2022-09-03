@@ -35,10 +35,12 @@ public class MantisSite {
 
     public void reportIssueWithoutSummary() {
         reportIssuePage.inputDescription();
+        reportIssuePage.clearInputSummary();
         reportIssuePage.submitIssue();
     }
 
     public void reportIssueWithoutDescription() {
+        reportIssuePage.clearInputDescription();
         reportIssuePage.inputSummary();
         reportIssuePage.submitIssue();
     }
