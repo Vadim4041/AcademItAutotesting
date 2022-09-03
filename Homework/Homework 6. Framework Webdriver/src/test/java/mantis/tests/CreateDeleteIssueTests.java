@@ -3,12 +3,11 @@ package mantis.tests;
 import mantis.pages.MantisSite;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 public class CreateDeleteIssueTests extends BaseTest {
 
     private MantisSite mantisSite;
-    private SoftAssertions softAssert = new SoftAssertions();
+    private final SoftAssertions softAssert = new SoftAssertions();
 
     @Test
     public void addDeleteIssuePositive() throws InterruptedException {
@@ -38,7 +37,7 @@ public class CreateDeleteIssueTests extends BaseTest {
     }
 
     @Test
-    public void addIssueWithoutRequiredFields() throws InterruptedException {
+    public void addIssueWithoutRequiredFields() {
         mantisSite = new MantisSite(driver);
         mantisSite.login();
         mantisSite.getMainPage().goToReportIssuePage();

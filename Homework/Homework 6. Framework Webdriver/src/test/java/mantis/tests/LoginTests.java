@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 public class LoginTests extends BaseTest{
 
-    private MantisSite mantisSite;
-
     @Test
     public void loginUrlTest() {
         String currentUrl = driver.getCurrentUrl();
@@ -22,7 +20,7 @@ public class LoginTests extends BaseTest{
 
     @Test
     public void successfulLoginTest() throws InterruptedException {
-        mantisSite = new MantisSite(driver);
+        MantisSite mantisSite = new MantisSite(driver);
         mantisSite.login();
 
         String currentUserName = mantisSite.getMainPage().getUserName();
