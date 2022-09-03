@@ -19,6 +19,12 @@ public class NewestIssueDetailsPage {
     @FindBy (css = "tr:nth-child(10) > td")
     private WebElement actualNewestIssueSummary;
 
+    @FindBy (css = "div > div:nth-child(10)")
+    private WebElement deleteIssueButton;
+
+    @FindBy (css = "div.widget-toolbox.padding-8.clearfix > input")
+    private WebElement confirmDeleteIssueButton;
+
     public NewestIssueDetailsPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 30, 500);
@@ -36,5 +42,11 @@ public class NewestIssueDetailsPage {
 
     public String getActualNewestIssueSummary() {
         return actualNewestIssueSummary.getText();
+    }
+
+    public void deleteIssue() {
+        deleteIssueButton.click();
+//        Thread.sleep(1000);
+        confirmDeleteIssueButton.click();
     }
 }

@@ -10,6 +10,7 @@ public class ViewIssuesPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
+
     @FindBy (css = "tr:nth-child(1) > td.column-id > a")
     private WebElement newestIssueId;
 
@@ -27,4 +28,5 @@ public class ViewIssuesPage {
     public void newestIssueDetails() {
         newestIssueId.click();
     }
+
 }

@@ -38,4 +38,5 @@ public class ReportIssuePage {
     public void submitIssue() {
         submitIssueButton.click();
     }
+
 }

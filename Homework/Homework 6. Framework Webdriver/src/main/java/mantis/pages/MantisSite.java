@@ -33,32 +33,18 @@ public class MantisSite {
         reportIssuePage.submitIssue();
     }
 
-    public String getDescriptionText() {
-        return reportIssuePage.descriptionText;
+    public void reportIssueWithoutSummary() {
+        reportIssuePage.inputDescription();
+        reportIssuePage.submitIssue();
     }
 
-    public String getSummaryText() {
-        return reportIssuePage.summaryText;
+    public void reportIssueWithoutDescription() {
+        reportIssuePage.inputSummary();
+        reportIssuePage.submitIssue();
     }
 
-    public String getNewestIssueId() {
-        return viewIssuesPage.getNewestIssueId();
-    }
-
-    public void goToNewestIssueDetailsPage() {
-        viewIssuesPage.newestIssueDetails();
-    }
-
-    public String getActualNewestIssueId() {
-       return newestIssueDetailsPage.getActualNewestIssueId();
-    }
-
-    public String getActualNewestIssueDescription() {
-        return newestIssueDetailsPage.getActualNewestIssueDescription();
-    }
-
-    public String getActualNewestIssueSummary() {
-        return newestIssueDetailsPage.getActualNewestIssueSummary();
+    public void reportEmptyIssue() {
+        reportIssuePage.submitIssue();
     }
 
     public LoginPage getLoginPage() {
@@ -79,5 +65,9 @@ public class MantisSite {
 
     public ViewIssuesPage getViewIssuesPage() {
         return viewIssuesPage;
+    }
+
+    public NewestIssueDetailsPage getNewestIssuePage() {
+        return newestIssueDetailsPage;
     }
 }
