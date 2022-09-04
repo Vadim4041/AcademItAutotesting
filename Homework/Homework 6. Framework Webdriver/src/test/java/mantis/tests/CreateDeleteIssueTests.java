@@ -14,10 +14,10 @@ public class CreateDeleteIssueTests extends BaseTest {
         mantisSite = new MantisSite(driver);
         mantisSite.login();
         mantisSite.getMainPage().goToReportIssuePage();
-        mantisSite.reportIssue();
+        mantisSite.getReportIssuePage().reportIssue();
         mantisSite.getMainPage().goToViewIssuesPage();
         String newIssueId = mantisSite.getViewIssuesPage().getNewestIssueId();
-        mantisSite.getViewIssuesPage().newestIssueDetails();
+        mantisSite.getViewIssuesPage().goToNewestIssueDetails();
         String actualNewIssueId = mantisSite.getNewestIssuePage().getActualNewestIssueId();
         String actualNewIssueDescription = mantisSite.getNewestIssuePage().getActualNewestIssueDescription();
         String actualNewIssueSummary = mantisSite.getNewestIssuePage().getActualNewestIssueSummary();
@@ -26,7 +26,7 @@ public class CreateDeleteIssueTests extends BaseTest {
         softAssert.assertThat(actualNewIssueDescription).isEqualTo(mantisSite.getReportIssuePage().descriptionText);
         softAssert.assertThat(actualNewIssueSummary).isEqualTo(newIssueId + ": " + mantisSite.getReportIssuePage().summaryText);
 
-        mantisSite.getNewestIssuePage().deleteIssue();
+        mantisSite.getNewestIssuePage().deleteCurrentIssue();
 
         softAssert.assertThat(mantisSite.getViewIssuesPage().getNewestIssueId()).isNotEqualTo(newIssueId);
 
@@ -43,11 +43,11 @@ public class CreateDeleteIssueTests extends BaseTest {
 
         softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://academ-it.ru/mantisbt/bug_report_page.php");
 
-        mantisSite.reportIssueWithoutDescription();
+        mantisSite.getReportIssuePage().reportIssueWithoutDescription();
 
         softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://academ-it.ru/mantisbt/bug_report_page.php");
 
-        mantisSite.reportIssueWithoutSummary();
+        mantisSite.getReportIssuePage().reportIssueWithoutSummary();
 
         softAssert.assertThat(driver.getCurrentUrl()).isEqualTo("https://academ-it.ru/mantisbt/bug_report_page.php");
         softAssert.assertAll();
@@ -59,7 +59,7 @@ public class CreateDeleteIssueTests extends BaseTest {
         mantisSite.login();
         mantisSite.getMainPage().goToViewIssuesPage();
         String issueIdBeforeDeletion = mantisSite.getViewIssuesPage().getNewestIssueId();
-        mantisSite.getViewIssuesPage().newestIssueDetails();
+        mantisSite.getViewIssuesPage().goToNewestIssueDetails();
         mantisSite.getNewestIssuePage().deleteIssueWithoutConfirmation();
         mantisSite.getMainPage().goToViewIssuesPage();
         String issueIdAfterDeletion = mantisSite.getViewIssuesPage().getNewestIssueId();

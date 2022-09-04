@@ -41,9 +41,8 @@ public class NewestIssueDetailsPage {
         return actualNewestIssueSummary.getText();
     }
 
-    public void deleteIssue() {
+    public void deleteCurrentIssue() {
         deleteIssueButton.click();
-//        Thread.sleep(1000);
         confirmDeleteIssueButton.click();
     }
 

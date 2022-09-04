@@ -46,4 +46,22 @@ public class ReportIssuePage {
         submitIssueButton.click();
     }
 
+    public void reportIssue() {
+        inputSummary();
+        inputDescription();
+        submitIssue();
+    }
+
+    public void reportIssueWithoutSummary() {
+        inputDescription();
+        clearInputSummary();
+        submitIssue();
+    }
+
+    public void reportIssueWithoutDescription() {
+        clearInputDescription();
+        inputSummary();
+        submitIssue();
+    }
+
 }

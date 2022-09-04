@@ -3,16 +3,14 @@ package mantis.pages;
 import org.openqa.selenium.WebDriver;
 
 public class MantisSite {
-    private final WebDriver driver;
-    private LoginPage loginPage;
-    private PasswordPage passwordPage;
-    private MainPage mainPage;
-    private ReportIssuePage reportIssuePage;
-    private ViewIssuesPage viewIssuesPage;
-    private NewestIssueDetailsPage newestIssueDetailsPage;
+    private final LoginPage loginPage;
+    private final PasswordPage passwordPage;
+    private final MainPage mainPage;
+    private final ReportIssuePage reportIssuePage;
+    private final ViewIssuesPage viewIssuesPage;
+    private final NewestIssueDetailsPage newestIssueDetailsPage;
 
     public MantisSite(WebDriver driver) {
-        this.driver = driver;
 
         loginPage = new LoginPage(driver);
         passwordPage = new PasswordPage(driver);
@@ -25,24 +23,6 @@ public class MantisSite {
     public void login() {
         loginPage.login();
         passwordPage.login();
-    }
-
-    public void reportIssue() {
-        reportIssuePage.inputSummary();
-        reportIssuePage.inputDescription();
-        reportIssuePage.submitIssue();
-    }
-
-    public void reportIssueWithoutSummary() {
-        reportIssuePage.inputDescription();
-        reportIssuePage.clearInputSummary();
-        reportIssuePage.submitIssue();
-    }
-
-    public void reportIssueWithoutDescription() {
-        reportIssuePage.clearInputDescription();
-        reportIssuePage.inputSummary();
-        reportIssuePage.submitIssue();
     }
 
     public void reportEmptyIssue() {

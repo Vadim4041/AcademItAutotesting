@@ -22,7 +22,7 @@ public class ViewIssuesPage {
         return newestIssueId.getText();
     }
 
-    public void newestIssueDetails() {
+    public void goToNewestIssueDetails() {
         newestIssueId.click();
     }
 
