@@ -10,7 +10,7 @@ public class CreateDeleteIssueTests extends BaseTest {
     private final SoftAssertions softAssert = new SoftAssertions();
 
     @Test
-    public void addDeleteIssuePositive() throws InterruptedException {
+    public void addDeleteIssuePositive() {
         mantisSite = new MantisSite(driver);
         mantisSite.login();
         mantisSite.getMainPage().goToReportIssuePage();
@@ -31,8 +31,6 @@ public class CreateDeleteIssueTests extends BaseTest {
         softAssert.assertThat(mantisSite.getViewIssuesPage().getNewestIssueId()).isNotEqualTo(newIssueId);
 
         softAssert.assertAll();
-
-        Thread.sleep(1000);
 
     }
 

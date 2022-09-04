@@ -4,7 +4,7 @@ import mantis.pages.MantisSite;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class LoginTests extends BaseTest{
+public class LoginTests extends BaseTest {
 
     @Test
     public void loginUrlTest() {
@@ -19,12 +19,12 @@ public class LoginTests extends BaseTest{
     }
 
     @Test
-    public void successfulLoginTest() throws InterruptedException {
+    public void successfulLoginTest() {
         MantisSite mantisSite = new MantisSite(driver);
         mantisSite.login();
 
         String currentUserName = mantisSite.getMainPage().getUserName();
         Assertions.assertEquals("admin", currentUserName);
-        Thread.sleep(1000);
+
     }
 }
