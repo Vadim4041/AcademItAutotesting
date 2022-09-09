@@ -1,0 +1,1046 @@
+{
+	"info": {
+		"_postman_id": "6ae50021-3f55-4a7c-afb6-0f6234b0a2b5",
+		"name": "Homework 8. OpenWeather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20308443"
+	},
+	"item": [
+		{
+			"name": "Task1StatusCode200ValidCity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var city = pm.variables.get(\"validCityEng\");\r",
+							"\r",
+							"pm.test(\"Actual city is as in validCityEng variable\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(city);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task1StatusCode404InValidCity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Json message: city not found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"city not found\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Json Cod is 404\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"cod\", \"404\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{invalidCity}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{invalidCity}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task1StatusCode200Units",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}&lang={{validLang}}&units={{validUnits}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}"
+						},
+						{
+							"key": "lang",
+							"value": "{{validLang}}"
+						},
+						{
+							"key": "units",
+							"value": "{{validUnits}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task1StatusCode200Lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Actual city in Russian is as in validCityRus variable\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var cityRus = pm.variables.get(\"validCityRus\");\r",
+							"    pm.expect(jsonData.name).to.eql(cityRus);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}&lang={{validLang}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}"
+						},
+						{
+							"key": "lang",
+							"value": "{{validLang}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task1StatusCode401InvalidAPIJson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Json message mentions invalid API\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.contain(\"Invalid API\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Json Cod is 401\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"cod\", 401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{invalidAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task2WeatherMainIsInAccordanceWIthWeatherId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var weatherId = pm.response.json().weather[0].id;\r",
+							"\r",
+							"if (weatherId>=200 && weatherId<=232) {\r",
+							"pm.test(\"Weather main is in accordance with weather id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Thunderstorm\");\r",
+							"});\r",
+							"}\r",
+							"\r",
+							"if (weatherId>=300 && weatherId<=321) {\r",
+							"pm.test(\"Weather main is in accordance with weather id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Drizzle\");\r",
+							"});\r",
+							"}\r",
+							"\r",
+							"if (weatherId>=500 && weatherId<=521) {\r",
+							"pm.test(\"Weather main is in accordance with weather id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Rain\");\r",
+							"});\r",
+							"}\r",
+							"\r",
+							"if (weatherId>=600 && weatherId<=622) {\r",
+							"pm.test(\"Weather main is in accordance with weather id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Snow\");\r",
+							"});\r",
+							"}\r",
+							"\r",
+							"if (weatherId==800) {\r",
+							"pm.test(\"Weather main is in accordance with weather id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Clear\");\r",
+							"});\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task3DynamicVariables",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"There is city\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.be.not.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?lat={{$randomLatitude}}&lon={{$randomLongitude}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}",
+							"disabled": true
+						},
+						{
+							"key": "lat",
+							"value": "{{$randomLatitude}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{$randomLongitude}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task4StatusCode401JsonSchema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const schema = { \r",
+							"  \"required\": [ \r",
+							"        \"cod\", \r",
+							"        \"message\" \r",
+							"    ], \r",
+							"    \"properties\": { \r",
+							"        \"cod\": {             \r",
+							"            \"type\": \"integer\"             \r",
+							"        }, \r",
+							"        \"message\": {             \r",
+							"            \"type\": \"string\" \r",
+							"        } \r",
+							"    } \r",
+							"}; \r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{invalidAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{validCityEng}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Task4StatusCode200JsonSchema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const schema = {\r",
+							"    \"type\": \"object\",\r",
+							"    \"default\": {},\r",
+							"    \"title\": \"Root Schema\",\r",
+							"    \"required\": [\r",
+							"        \"coord\",\r",
+							"        \"weather\",\r",
+							"        \"base\",\r",
+							"        \"main\",\r",
+							"        \"visibility\",\r",
+							"        \"wind\",\r",
+							"        \"clouds\",\r",
+							"        \"dt\",\r",
+							"        \"sys\",\r",
+							"        \"timezone\",\r",
+							"        \"id\",\r",
+							"        \"name\",\r",
+							"        \"cod\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"coord\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"default\": {},\r",
+							"            \"title\": \"The coord Schema\",\r",
+							"            \"required\": [\r",
+							"                \"lon\",\r",
+							"                \"lat\"\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"lon\": {\r",
+							"                    \"type\": \"number\",\r",
+							"                    \"default\": 0.0,\r",
+							"                    \"title\": \"The lon Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        82.9344\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"lat\": {\r",
+							"                    \"type\": \"number\",\r",
+							"                    \"default\": 0.0,\r",
+							"                    \"title\": \"The lat Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        55.0411\r",
+							"                    ]\r",
+							"                }\r",
+							"            },\r",
+							"            \"examples\": [{\r",
+							"                \"lon\": 82.9344,\r",
+							"                \"lat\": 55.0411\r",
+							"            }]\r",
+							"        },\r",
+							"        \"weather\": {\r",
+							"            \"type\": \"array\",\r",
+							"            \"default\": [],\r",
+							"            \"title\": \"The weather Schema\",\r",
+							"            \"items\": {\r",
+							"                \"type\": \"object\",\r",
+							"                \"default\": {},\r",
+							"                \"title\": \"A Schema\",\r",
+							"                \"required\": [\r",
+							"                    \"id\",\r",
+							"                    \"main\",\r",
+							"                    \"description\",\r",
+							"                    \"icon\"\r",
+							"                ],\r",
+							"                \"properties\": {\r",
+							"                    \"id\": {\r",
+							"                        \"type\": \"integer\",\r",
+							"                        \"default\": 0,\r",
+							"                        \"title\": \"The id Schema\",\r",
+							"                        \"examples\": [\r",
+							"                            800\r",
+							"                        ]\r",
+							"                    },\r",
+							"                    \"main\": {\r",
+							"                        \"type\": \"string\",\r",
+							"                        \"default\": \"\",\r",
+							"                        \"title\": \"The main Schema\",\r",
+							"                        \"examples\": [\r",
+							"                            \"Clear\"\r",
+							"                        ]\r",
+							"                    },\r",
+							"                    \"description\": {\r",
+							"                        \"type\": \"string\",\r",
+							"                        \"default\": \"\",\r",
+							"                        \"title\": \"The description Schema\",\r",
+							"                        \"examples\": [\r",
+							"                            \"clear sky\"\r",
+							"                        ]\r",
+							"                    },\r",
+							"                    \"icon\": {\r",
+							"                        \"type\": \"string\",\r",
+							"                        \"default\": \"\",\r",
+							"                        \"title\": \"The icon Schema\",\r",
+							"                        \"examples\": [\r",
+							"                            \"01n\"\r",
+							"                        ]\r",
+							"                    }\r",
+							"                },\r",
+							"                \"examples\": [{\r",
+							"                    \"id\": 800,\r",
+							"                    \"main\": \"Clear\",\r",
+							"                    \"description\": \"clear sky\",\r",
+							"                    \"icon\": \"01n\"\r",
+							"                }]\r",
+							"            },\r",
+							"            \"examples\": [\r",
+							"                [{\r",
+							"                    \"id\": 800,\r",
+							"                    \"main\": \"Clear\",\r",
+							"                    \"description\": \"clear sky\",\r",
+							"                    \"icon\": \"01n\"\r",
+							"                }]\r",
+							"            ]\r",
+							"        },\r",
+							"        \"base\": {\r",
+							"            \"type\": \"string\",\r",
+							"            \"default\": \"\",\r",
+							"            \"title\": \"The base Schema\",\r",
+							"            \"examples\": [\r",
+							"                \"stations\"\r",
+							"            ]\r",
+							"        },\r",
+							"        \"main\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"default\": {},\r",
+							"            \"title\": \"The main Schema\",\r",
+							"            \"required\": [\r",
+							"                \"temp\",\r",
+							"                \"feels_like\",\r",
+							"                \"temp_min\",\r",
+							"                \"temp_max\",\r",
+							"                \"pressure\",\r",
+							"                \"humidity\"\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"temp\": {\r",
+							"                    \"type\": \"number\",\r",
+							"                    \"default\": 0.0,\r",
+							"                    \"title\": \"The temp Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        285.76\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"feels_like\": {\r",
+							"                    \"type\": \"number\",\r",
+							"                    \"default\": 0.0,\r",
+							"                    \"title\": \"The feels_like Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        284.3\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"temp_min\": {\r",
+							"                    \"type\": \"number\",\r",
+							"                    \"default\": 0.0,\r",
+							"                    \"title\": \"The temp_min Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        285.53\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"temp_max\": {\r",
+							"                    \"type\": \"number\",\r",
+							"                    \"default\": 0.0,\r",
+							"                    \"title\": \"The temp_max Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        285.76\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"pressure\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The pressure Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        1019\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"humidity\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The humidity Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        47\r",
+							"                    ]\r",
+							"                }\r",
+							"            },\r",
+							"            \"examples\": [{\r",
+							"                \"temp\": 285.76,\r",
+							"                \"feels_like\": 284.3,\r",
+							"                \"temp_min\": 285.53,\r",
+							"                \"temp_max\": 285.76,\r",
+							"                \"pressure\": 1019,\r",
+							"                \"humidity\": 47\r",
+							"            }]\r",
+							"        },\r",
+							"        \"visibility\": {\r",
+							"            \"type\": \"integer\",\r",
+							"            \"default\": 0,\r",
+							"            \"title\": \"The visibility Schema\",\r",
+							"            \"examples\": [\r",
+							"                10000\r",
+							"            ]\r",
+							"        },\r",
+							"        \"wind\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"default\": {},\r",
+							"            \"title\": \"The wind Schema\",\r",
+							"            \"required\": [\r",
+							"                \"speed\",\r",
+							"                \"deg\"\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"speed\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The speed Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        3\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"deg\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The deg Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        260\r",
+							"                    ]\r",
+							"                }\r",
+							"            },\r",
+							"            \"examples\": [{\r",
+							"                \"speed\": 3,\r",
+							"                \"deg\": 260\r",
+							"            }]\r",
+							"        },\r",
+							"        \"clouds\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"default\": {},\r",
+							"            \"title\": \"The clouds Schema\",\r",
+							"            \"required\": [\r",
+							"                \"all\"\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"all\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The all Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        0\r",
+							"                    ]\r",
+							"                }\r",
+							"            },\r",
+							"            \"examples\": [{\r",
+							"                \"all\": 0\r",
+							"            }]\r",
+							"        },\r",
+							"        \"dt\": {\r",
+							"            \"type\": \"integer\",\r",
+							"            \"default\": 0,\r",
+							"            \"title\": \"The dt Schema\",\r",
+							"            \"examples\": [\r",
+							"                1662730905\r",
+							"            ]\r",
+							"        },\r",
+							"        \"sys\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"default\": {},\r",
+							"            \"title\": \"The sys Schema\",\r",
+							"            \"required\": [\r",
+							"                \"type\",\r",
+							"                \"id\",\r",
+							"                \"country\",\r",
+							"                \"sunrise\",\r",
+							"                \"sunset\"\r",
+							"            ],\r",
+							"            \"properties\": {\r",
+							"                \"type\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The type Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        1\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"id\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The id Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        8958\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"country\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                    \"default\": \"\",\r",
+							"                    \"title\": \"The country Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        \"RU\"\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"sunrise\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The sunrise Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        1662680929\r",
+							"                    ]\r",
+							"                },\r",
+							"                \"sunset\": {\r",
+							"                    \"type\": \"integer\",\r",
+							"                    \"default\": 0,\r",
+							"                    \"title\": \"The sunset Schema\",\r",
+							"                    \"examples\": [\r",
+							"                        1662728582\r",
+							"                    ]\r",
+							"                }\r",
+							"            },\r",
+							"            \"examples\": [{\r",
+							"                \"type\": 1,\r",
+							"                \"id\": 8958,\r",
+							"                \"country\": \"RU\",\r",
+							"                \"sunrise\": 1662680929,\r",
+							"                \"sunset\": 1662728582\r",
+							"            }]\r",
+							"        },\r",
+							"        \"timezone\": {\r",
+							"            \"type\": \"integer\",\r",
+							"            \"default\": 0,\r",
+							"            \"title\": \"The timezone Schema\",\r",
+							"            \"examples\": [\r",
+							"                25200\r",
+							"            ]\r",
+							"        },\r",
+							"        \"id\": {\r",
+							"            \"type\": \"integer\",\r",
+							"            \"default\": 0,\r",
+							"            \"title\": \"The id Schema\",\r",
+							"            \"examples\": [\r",
+							"                1496747\r",
+							"            ]\r",
+							"        },\r",
+							"        \"name\": {\r",
+							"            \"type\": \"string\",\r",
+							"            \"default\": \"\",\r",
+							"            \"title\": \"The name Schema\",\r",
+							"            \"examples\": [\r",
+							"                \"Novosibirsk\"\r",
+							"            ]\r",
+							"        },\r",
+							"        \"cod\": {\r",
+							"            \"type\": \"integer\",\r",
+							"            \"default\": 0,\r",
+							"            \"title\": \"The cod Schema\",\r",
+							"            \"examples\": [\r",
+							"                200\r",
+							"            ]\r",
+							"        }\r",
+							"    },\r",
+							"    \"examples\": [{\r",
+							"        \"coord\": {\r",
+							"            \"lon\": 82.9344,\r",
+							"            \"lat\": 55.0411\r",
+							"        },\r",
+							"        \"weather\": [{\r",
+							"            \"id\": 800,\r",
+							"            \"main\": \"Clear\",\r",
+							"            \"description\": \"clear sky\",\r",
+							"            \"icon\": \"01n\"\r",
+							"        }],\r",
+							"        \"base\": \"stations\",\r",
+							"        \"main\": {\r",
+							"            \"temp\": 285.76,\r",
+							"            \"feels_like\": 284.3,\r",
+							"            \"temp_min\": 285.53,\r",
+							"            \"temp_max\": 285.76,\r",
+							"            \"pressure\": 1019,\r",
+							"            \"humidity\": 47\r",
+							"        },\r",
+							"        \"visibility\": 10000,\r",
+							"        \"wind\": {\r",
+							"            \"speed\": 3,\r",
+							"            \"deg\": 260\r",
+							"        },\r",
+							"        \"clouds\": {\r",
+							"            \"all\": 0\r",
+							"        },\r",
+							"        \"dt\": 1662730905,\r",
+							"        \"sys\": {\r",
+							"            \"type\": 1,\r",
+							"            \"id\": 8958,\r",
+							"            \"country\": \"RU\",\r",
+							"            \"sunrise\": 1662680929,\r",
+							"            \"sunset\": 1662728582\r",
+							"        },\r",
+							"        \"timezone\": 25200,\r",
+							"        \"id\": 1496747,\r",
+							"        \"name\": \"Novosibirsk\",\r",
+							"        \"cod\": 200\r",
+							"    }]\r",
+							"};\r",
+							"\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.response.to.have.jsonSchema(schema);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{validAppId}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "APPID",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{url}}/data/2.5/weather?q=Novosibirsk",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Novosibirsk"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
