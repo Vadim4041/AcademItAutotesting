@@ -7,6 +7,152 @@
 	},
 	"item": [
 		{
+			"name": "SaveAndReuseVariable",
+			"item": [
+				{
+					"name": "SaveLonAndLat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Save lat and lot variables for chosen city in q variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"lon\", jsonData.coord.lon);\r",
+									"    pm.environment.set(\"lat\", jsonData.coord.lat);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{validAppId}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "APPID",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{validCityEng}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UseLonAndLat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var expectedCity = pm.variables.get(\"validCityEng\");\r",
+									"\r",
+									"pm.test(\"Actual city name is the same as the one in validCityEng variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(expectedCity);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{validAppId}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "query",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "APPID",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/data/2.5/weather?lat={{lat}}&lon={{lon}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{validCityEng}}",
+									"disabled": true
+								},
+								{
+									"key": "lat",
+									"value": "{{lat}}"
+								},
+								{
+									"key": "lon",
+									"value": "{{lon}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Task1StatusCode200ValidCity",
 			"event": [
 				{
@@ -52,8 +198,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}",
 					"host": [
 						"{{url}}"
 					],
@@ -122,8 +267,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{invalidCity}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{invalidCity}}",
 					"host": [
 						"{{url}}"
 					],
@@ -183,8 +327,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}&lang={{validLang}}&units={{validUnits}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}&lang={{validLang}}&units={{validUnits}}",
 					"host": [
 						"{{url}}"
 					],
@@ -256,8 +399,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}&lang={{validLang}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}&lang={{validLang}}",
 					"host": [
 						"{{url}}"
 					],
@@ -330,8 +472,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}",
 					"host": [
 						"{{url}}"
 					],
@@ -392,6 +533,13 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.weather[0].main).to.eql(\"Clear\");\r",
 							"});\r",
+							"}\r",
+							"\r",
+							"if (weatherId>=801 && weatherId<=804) {\r",
+							"pm.test(\"Weather main is in accordance with weather id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].main).to.eql(\"Clouds\");\r",
+							"});\r",
 							"}"
 						],
 						"type": "text/javascript"
@@ -422,8 +570,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}",
 					"host": [
 						"{{url}}"
 					],
@@ -449,10 +596,18 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"There is city\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.name).to.be.not.empty;\r",
-							"});"
+							"var id = pm.response.json().id;\r",
+							"var name = pm.response.json().name;\r",
+							"\r",
+							"if (id != 0) {\r",
+							"    pm.test(\"There is a city\", function () {\r",
+							"        pm.expect(name).to.be.not.empty;\r",
+							"});\r",
+							"} else {\r",
+							"    pm.test(\"There is no city\", function () {\r",
+							"        pm.expect(name).to.be.empty;\r",
+							"});\r",
+							"}"
 						],
 						"type": "text/javascript"
 					}
@@ -482,8 +637,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?lat={{$randomLatitude}}&lon={{$randomLongitude}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?lat={{$randomLatitude}}&lon={{$randomLongitude}}",
 					"host": [
 						"{{url}}"
 					],
@@ -564,8 +718,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q={{validCityEng}}",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q={{validCityEng}}",
 					"host": [
 						"{{url}}"
 					],
@@ -1022,8 +1175,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://{{url}}/data/2.5/weather?q=Novosibirsk",
-					"protocol": "https",
+					"raw": "{{url}}/data/2.5/weather?q=Novosibirsk",
 					"host": [
 						"{{url}}"
 					],
